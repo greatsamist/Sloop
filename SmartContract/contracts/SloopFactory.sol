@@ -26,7 +26,7 @@ contract SloopFactory is Ownable {
         bytes32 id = _getOptionId(_name, _deployer);
         require(idToAddress[id] == address(0), "Sloop sourcing type exist");
         bytes32 salt = keccak256(abi.encodePacked(_name, _deployer));
-        sloopContract = implementation.cloneDeterministic(implementation, salt);
+        sloopContract = Clones.cloneDeterministic(implementation, salt);
         ISloop(sloopContract).initialize(_deployer);
         allSloop.push(sloopContract);
         idToAddress[id] = sloopContract;
