@@ -30,6 +30,8 @@ contract SloopFactory is Ownable {
         ISloop(sloopContract).initialize(_deployer);
         allSloop.push(sloopContract);
         idToAddress[id] = sloopContract;
+
+        emit NewSloop(sloopContract);
     }
 
     function getSloopSource(string memory _name, address _deployer)
