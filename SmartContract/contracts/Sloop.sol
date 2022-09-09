@@ -1,8 +1,9 @@
 //SPDX-License-Identifier: MIT
+pragma solidity 0.8.15;
 
-pragma solidity 0.8.6;
+import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
-contract Sloop {
+contract Sloop is Initializable {
     // Product
     struct Product {
         uint8 id;
@@ -34,7 +35,9 @@ contract Sloop {
     event addProduct(uint8 productId);
     event createDept(string deptName);
 
-    constructor() {}
+   function initialize(address _deployer) public intiallizer {
+    deployer = _deployer;
+   }
 
     /// @notice Add a single product
     /// @param _id The unique Id of a product
