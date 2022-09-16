@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT
 pragma solidity 0.8.15;
 
-interface ISloop {
+interface IStraps {
     function initalize(address _deployer) external;
 
     function addProduct(uint8 _id, string memory _productType) external;

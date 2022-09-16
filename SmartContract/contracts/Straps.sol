@@ -3,7 +3,7 @@ pragma solidity 0.8.15;
 
 import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 
-contract Sloop is Initializable {
+contract Starps is Initializable {
     // Product
     struct Product {
         uint8 id;

@@ -1,2 +1,1 @@
-export * from "./index-sections";
-
+export * from "./how-it-works";

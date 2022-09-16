@@ -1,61 +1,42 @@
 import { Layout } from "@layouts";
-import "@rainbow-me/rainbowkit/styles.css";
-import {
-  darkTheme,
-  getDefaultWallets,
-  RainbowKitProvider,
-} from "@rainbow-me/rainbowkit";
 import { default as NextHead } from "next/head";
-import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
 import type { AppProps } from "next/app";
-import "../styles/globals.scss";
+import { Web3Provider } from "@components";
+import { ThemeProvider, CssBaseline } from "@mui/material";
+import { CacheProvider, EmotionCache } from "@emotion/react";
+import { defaultTheme } from "@styles";
+import createEmotionCache from "@styles/createEmotionCache";
 
-const { chains, provider } = configureChains(
-  [chain.polygonMumbai],
-  [
-    alchemyProvider({
-      // This is Alchemy's default API key.
-      // You can get your own at https://dashboard.alchemyapi.io
-      alchemyId: "_gg7wSSi0KMBsdKnGVfHDueq6xMB9EkC",
-    }),
-    publicProvider(),
-  ]
-);
+// Client-side cache, shared for the whole session of the user in the browser.
+const clientSideEmotionCache = createEmotionCache();
 
-const { connectors } = getDefaultWallets({
-  appName: "BlocEvent App",
-  chains,
-});
+interface MyAppProps extends AppProps {
+  emotionCache?: EmotionCache;
+}
 
-const wagmiClient = createClient({
-  autoConnect: true,
-  connectors,
-  provider,
-});
-
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp(props: MyAppProps) {
+  const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
   return (
-    <WagmiConfig client={wagmiClient}>
-      <RainbowKitProvider
-        chains={chains}
-        theme={darkTheme({ ...darkTheme.accentColors.purple })}
-      >
-        <NextHead>
-          <base href="/" />
-          <meta charSet="utf-8" />
-          <title>BlocEvent - A decentralized events app</title>
-          <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover"
-          />
-        </NextHead>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <CacheProvider value={emotionCache}>
+      <ThemeProvider theme={defaultTheme}>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <CssBaseline />
+        <Web3Provider>
+          <NextHead>
+            <base href="/" />
+            <meta charSet="utf-8" />
+            <title>Straps - A decentralized supply chain</title>
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, user-scalable=no, viewport-fit=cover"
+            />
+          </NextHead>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </Web3Provider>
+      </ThemeProvider>
+    </CacheProvider>
   );
 }
 
