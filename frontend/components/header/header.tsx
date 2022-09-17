@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
 import { ConnectButton, NavItem } from "@components";
-import { Icon, Typography, SvgIcon } from "@mui/material";
+import { Icon, Typography } from "@mui/material";
 import { StyledHeader, StyledNavContainer } from "./header.styles";
 
 export const Header: FC<HeaderProps> = (props: HeaderProps) => {
@@ -12,8 +12,6 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
         <StyledNavContainer>
           <StyledNavContainer>
             <Icon>
-              {/* // component={logo}
-              // sx={{ fontSize: 20, height: "100%", objectFit: "cover" }} */}
               <img
                 src="./logoSvg.svg"
                 height={30}
@@ -38,7 +36,6 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
             </NavItem>
 
             <NavItem href="#">
-              {" "}
               <Typography variant="h6">Road Map</Typography>
             </NavItem>
             <ConnectButton />

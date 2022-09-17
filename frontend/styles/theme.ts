@@ -22,6 +22,20 @@ export const defaultTheme = createTheme({
   typography: {
     // htmlFontSize: 10,
     fontFamily: "Manrope",
+
+    h2: {
+      fontFamily: "Inter",
+      fontSize: "23px",
+      fontWeight: "700",
+      textTransform: "uppercase",
+      color: "#fff",
+      letterSpacing: "4px",
+    },
+    h6: {
+      color: "#C4C4C4",
+      fontWeight: "500",
+      fontSize: "15px",
+    },
   },
   components: {
     MuiIcon: {

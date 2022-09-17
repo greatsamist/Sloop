@@ -17,8 +17,8 @@ export const IndexHero: FC = () => {
         justifyContent="center"
         sx={{
           margin: "0 auto",
-          height: "calc(100vh - 80px)",
-          minHeight: "calc(100vh - 80px)",
+          height: "100vh",
+          minHeight: "100vh",
           // flexDirection: "column",
           alignItems: "center",
         }}
@@ -26,7 +26,10 @@ export const IndexHero: FC = () => {
         <StyledTitle sx={{ marginBottom: "0" }}>
           Supply Chain management at your
         </StyledTitle>
-        <StyledRedTitle>fingerTIP</StyledRedTitle>
+        <StyledRedTitle>
+          finger<StyledTitleSpan>Tip</StyledTitleSpan>
+        </StyledRedTitle>
+
         <StyledSubTitle>
           Your all in one place to track supplies distribution and day to day
           activities, Straps allows you have a transparent, qualitative and
@@ -39,7 +42,7 @@ export const IndexHero: FC = () => {
           sx={{
             textAlign: "center",
             alignItems: "center",
-            margin: "60px 0",
+            margin: "50px 0",
           }}
         >
           Login With UD

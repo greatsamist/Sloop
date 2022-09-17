@@ -23,7 +23,9 @@ export const StyledTitle = styled("h1")({
 });
 
 export const StyledTitleSpan = styled("span")({
-  color: "#F30917",
+  position: "absolute",
+  color: "#fff",
+  fontSize: "10px",
 });
 
 export const StyledRedTitle = styled(StyledTitle)({
@@ -37,7 +39,7 @@ export const StyledSubTitle = styled("p")({
   color: "#E5E5E5",
   fontFamily: "Source Sans Pro",
   fontSize: "22px",
-  width: "65%",
+  width: "50%",
   marginTop: "40px",
 });
 
