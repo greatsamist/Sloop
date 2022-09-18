@@ -1,11 +1,11 @@
-import { Layout } from "@layouts";
-import { default as NextHead } from "next/head";
-import type { AppProps } from "next/app";
 import { Web3Provider } from "@components";
-import { ThemeProvider, CssBaseline } from "@mui/material";
 import { CacheProvider, EmotionCache } from "@emotion/react";
+import { Layout } from "@layouts";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { defaultTheme } from "@styles";
 import createEmotionCache from "@styles/createEmotionCache";
+import { default as NextHead } from "next/head";
+import type { AppProps } from "next/app";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();

@@ -1,11 +1,11 @@
 import { Fragment } from "react";
-import type { NextPage } from "next";
 import {
   Accountability,
   HowItWorksSection,
   IndexHero,
   WellTailored,
 } from "@components";
+import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return (
