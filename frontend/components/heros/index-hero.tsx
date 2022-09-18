@@ -1,6 +1,7 @@
 import { FC, Fragment } from "react";
 import { Wallet } from "@mui/icons-material";
 import { Box, Button } from "@mui/material";
+
 import {
   StyledRedTitle,
   StyledSubTitle,

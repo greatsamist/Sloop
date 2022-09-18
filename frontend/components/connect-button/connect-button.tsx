@@ -1,8 +1,8 @@
-import { FC, Fragment } from "react";
-import { useMediaQuery } from "@hooks";
-import { ConnectButton as RainbowButton } from "@rainbow-me/rainbowkit";
 import { Wallet } from "@mui/icons-material";
+import { useMediaQuery } from "@hooks";
 import { Button } from "@mui/material";
+import { ConnectButton as RainbowButton } from "@rainbow-me/rainbowkit";
+import { FC, Fragment } from "react";
 
 export const ConnectButton: FC<ConnectButtonProps> = (
   props: ConnectButtonProps

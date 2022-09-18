@@ -1,16 +1,17 @@
-import { Fragment } from "react";
-import { useRainbowTheme } from "@hooks";
+import "@rainbow-me/rainbowkit/styles.css";
+
 import {
   connectorsForWallets,
   RainbowKitProvider,
   wallet,
 } from "@rainbow-me/rainbowkit";
+import type { FC, ReactNode } from "react";
+import { Fragment } from "react";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 // import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import type { FC, ReactNode } from "react";
-import "@rainbow-me/rainbowkit/styles.css";
+import { useRainbowTheme } from "@hooks";
 
 const needsInjectedWalletFallback = Boolean(
   typeof window !== "undefined" &&
