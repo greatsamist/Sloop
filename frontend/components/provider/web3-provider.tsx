@@ -1,4 +1,5 @@
 import { Fragment } from "react";
+import { useRainbowTheme } from "@hooks";
 import {
   connectorsForWallets,
   RainbowKitProvider,
@@ -8,7 +9,6 @@ import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 // import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
-import { useRainbowTheme } from "@hooks";
 import type { FC, ReactNode } from "react";
 import "@rainbow-me/rainbowkit/styles.css";
 

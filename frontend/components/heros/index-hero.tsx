@@ -1,11 +1,11 @@
-import { Box, Button } from "@mui/material";
-import { Wallet } from "@mui/icons-material";
 import { FC, Fragment } from "react";
+import { Wallet } from "@mui/icons-material";
+import { Box, Button } from "@mui/material";
 import {
-  StyledTitle,
-  StyledTitleSpan,
   StyledRedTitle,
   StyledSubTitle,
+  StyledTitle,
+  StyledTitleSpan,
 } from "./hero.styles";
 
 export const IndexHero: FC = () => {

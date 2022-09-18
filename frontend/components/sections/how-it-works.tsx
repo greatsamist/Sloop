@@ -1,6 +1,6 @@
-import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
-import { Wallet } from "@mui/icons-material";
 import { FC, Fragment } from "react";
+import { Wallet } from "@mui/icons-material";
+import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
 
 export const HowItWorksSection: FC = () => {
   return (

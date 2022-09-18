@@ -1,5 +1,4 @@
 import { FC, Fragment, HTMLAttributeAnchorTarget, ReactNode } from "react";
-
 import { default as NextLink } from "next/link";
 import { StyledLink } from "./nav-item.styles";
 

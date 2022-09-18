@@ -1,6 +1,7 @@
-import { FC, Fragment, useState, useEffect, useCallback, useMemo } from "react";
+import { FC, Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { ConnectButton, NavItem } from "@components";
-import { Icon, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
+import Image from "next/image";
 import { StyledHeader, StyledNavContainer } from "./header.styles";
 
 export const Header: FC<HeaderProps> = (props: HeaderProps) => {
@@ -36,17 +37,17 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
       <StyledHeader elevation={detached}>
         <StyledNavContainer>
           <StyledNavContainer>
-            <Icon>
-              <img
-                src="./logoSvg.svg"
-                height={30}
-                width={30}
-                style={{ objectFit: "cover" }}
-              />
-            </Icon>
+            <Image
+              src="/logoSvg.svg"
+              height={40}
+              width={40}
+              alt="logo"
+              style={{ objectFit: "cover" }}
+            />
+
             <Typography
               variant="h5"
-              sx={{ display: { xs: "none", sm: "block" } }}
+              sx={{ display: { xs: "none", sm: "block", marginLeft: "1rem" } }}
             >
               Straps
             </Typography>
