@@ -36,23 +36,23 @@
           "caseInsensitive": true
         },
         "groups": [
-          "index",
-          "sibling",
-          "parent",
-          "internal",
-          "external",
           "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
           "object",
           "type"
         ],
         "pathGroups": [
           {
             "pattern": "react",
-            "group": "builtin",
+            "group": "external",
             "position": "before"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["react"]
+        "pathGroupsExcludedImportTypes": ["builtin", "type"]
       }
     ]
   }
