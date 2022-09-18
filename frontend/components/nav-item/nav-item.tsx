@@ -1,7 +1,6 @@
 import { FC, Fragment, HTMLAttributeAnchorTarget, ReactNode } from "react";
 
 import { default as NextLink } from "next/link";
-import { Link } from "@mui/material";
 import { StyledLink } from "./nav-item.styles";
 
 export const NavItem: FC<NavItemProps> = (props: NavItemProps) => {
@@ -10,7 +9,7 @@ export const NavItem: FC<NavItemProps> = (props: NavItemProps) => {
   return (
     <Fragment>
       <NextLink href={href} target={target} passHref>
-        <StyledLink>{children}</StyledLink>
+        <StyledLink underline="hover">{children}</StyledLink>
       </NextLink>
     </Fragment>
   );

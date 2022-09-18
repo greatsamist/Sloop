@@ -1,5 +1,5 @@
-import { Box, Button, Container, Typography } from "@mui/material";
-import { LocalShipping, Circle, Wallet } from "@mui/icons-material";
+import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
+import { Wallet } from "@mui/icons-material";
 import { FC, Fragment } from "react";
 
 export const HowItWorksSection: FC = () => {
@@ -18,20 +18,23 @@ export const HowItWorksSection: FC = () => {
         <Box
           display="flex"
           justifyContent="space-between"
-          sx={{ marginTop: "3rem" }}
+          sx={{ marginTop: "3rem", padding: "0 7rem" }}
         >
           <Container>
-            <LocalShipping />
+            <CardMedia
+              height="100%"
+              width="80%"
+              component="img"
+              src="./assets/images/Howitworks.svg"
+              title="well tailored image"
+            />
           </Container>
-          <Container>
-            <Circle />
-          </Container>
-          <Container></Container>
         </Box>
 
         <Box
           display="flex"
           justifyContent="space-between"
+          gap="1rem"
           sx={{ marginTop: "3rem" }}
         >
           <Container>

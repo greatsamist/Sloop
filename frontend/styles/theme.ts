@@ -3,16 +3,19 @@ import { createTheme } from "@mui/material";
 export const defaultTheme = createTheme({
   palette: {
     primary: {
-      light: "#757ce8",
-      main: "#3f50b5",
+      light: "#fff",
+      main: "#E5E5E5",
       dark: "#002884",
       contrastText: "#fff",
     },
     secondary: {
-      light: "#ff7961",
-      main: "#f44336",
+      light: "#fff",
+      main: "#F30917",
       dark: "#ba000d",
-      contrastText: "#000",
+      contrastText: "#fff",
+    },
+    text: {
+      primary: "#F4F6FE",
     },
     background: {
       default: "#0F0F0F",
@@ -34,7 +37,7 @@ export const defaultTheme = createTheme({
     h6: {
       color: "#C4C4C4",
       fontWeight: "500",
-      fontSize: "15px",
+      fontSize: "16px",
     },
   },
   components: {

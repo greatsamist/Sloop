@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useState, useEffect, useCallback, useMemo } from "react";
 import { ConnectButton, NavItem } from "@components";
 import { Icon, Typography } from "@mui/material";
 import { StyledHeader, StyledNavContainer } from "./header.styles";
@@ -6,9 +6,34 @@ import { StyledHeader, StyledNavContainer } from "./header.styles";
 export const Header: FC<HeaderProps> = (props: HeaderProps) => {
   const {} = props;
 
+  const [scrollPosition, setScrollPosition] = useState<number>(0);
+
+  useEffect(() => {
+    setScrollPosition((typeof window !== "undefined" && window.scrollY) || 0);
+  }, []);
+
+  const onScroll = useCallback(() => {
+    if (window.scrollY >= 0 && window.scrollY <= 500) {
+      requestAnimationFrame(() => {
+        setScrollPosition(window.scrollY);
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll.bind(this));
+    return () => {
+      window.removeEventListener("scroll", onScroll.bind(this));
+    };
+  }, [onScroll]);
+
+  const detached = useMemo(() => {
+    return scrollPosition > 0 ? 4 : 0;
+  }, [scrollPosition]);
+
   return (
     <Fragment>
-      <StyledHeader>
+      <StyledHeader elevation={detached}>
         <StyledNavContainer>
           <StyledNavContainer>
             <Icon>
@@ -29,15 +54,13 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
 
           <StyledNavContainer>
             <NavItem href="#" target="">
-              <Typography variant="h6">Home</Typography>
+              Home
             </NavItem>
             <NavItem href="#" target="">
-              <Typography variant="h6">FAQ</Typography>
+              FAQ
             </NavItem>
 
-            <NavItem href="#">
-              <Typography variant="h6">Road Map</Typography>
-            </NavItem>
+            <NavItem href="#">Road Map</NavItem>
             <ConnectButton />
           </StyledNavContainer>
         </StyledNavContainer>

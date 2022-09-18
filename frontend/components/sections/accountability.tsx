@@ -1,7 +1,7 @@
 import { FC, Fragment } from "react";
-import { Box, Link, CardMedia, Container, Typography } from "@mui/material";
+import { Box, CardMedia, Container, Link, Typography } from "@mui/material";
 
-export const WellTailored: FC = () => {
+export const Accountability: FC = () => {
   return (
     <Fragment>
       <Box
@@ -9,20 +9,11 @@ export const WellTailored: FC = () => {
         alignItems="center"
         justifyContent="space-between"
         gap="5rem"
-        sx={{ padding: "12rem 2rem 4rem", width: "90%", margin: "0 auto" }}
+        sx={{ padding: "4rem 2rem 12rem", width: "90%", margin: "0 auto" }}
       >
         <Container>
-          <CardMedia
-            height="100%"
-            component="img"
-            src="./assets/images/welltailored.svg"
-            title="well tailored image"
-            sx={{ objectFit: "contain" }}
-          />
-        </Container>
-        <Container>
           <Typography variant="h2" sx={{ marginBottom: "1rem" }}>
-            Well Tailored
+            Accountability
           </Typography>
           <Typography sx={{ marginBottom: "1rem" }}>
             Straps allows you to have a well tailored and customizable platform
@@ -36,6 +27,16 @@ export const WellTailored: FC = () => {
           >
             Learn More
           </Link>
+        </Container>
+
+        <Container>
+          <CardMedia
+            height="500"
+            component="img"
+            src="./assets/images/Accountability.svg"
+            title="well tailored image"
+            sx={{ objectFit: "contain" }}
+          />
         </Container>
       </Box>
     </Fragment>

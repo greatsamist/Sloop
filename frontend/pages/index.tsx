@@ -1,6 +1,11 @@
 import { Fragment } from "react";
 import type { NextPage } from "next";
-import { HowItWorksSection, IndexHero, WellTailored } from "@components";
+import {
+  Accountability,
+  HowItWorksSection,
+  IndexHero,
+  WellTailored,
+} from "@components";
 
 const Home: NextPage = () => {
   return (
@@ -8,6 +13,7 @@ const Home: NextPage = () => {
       <IndexHero />
       <HowItWorksSection />
       <WellTailored />
+      <Accountability />
     </Fragment>
   );
 };

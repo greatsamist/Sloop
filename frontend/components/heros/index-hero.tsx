@@ -19,8 +19,8 @@ export const IndexHero: FC = () => {
           margin: "0 auto",
           height: "100vh",
           minHeight: "100vh",
-          // flexDirection: "column",
           alignItems: "center",
+          paddingBottom: "2rem",
         }}
       >
         <StyledTitle sx={{ marginBottom: "0" }}>
