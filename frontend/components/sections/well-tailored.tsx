@@ -1,5 +1,5 @@
-import { Box, CardMedia, Container, Link, Typography } from "@mui/material";
 import { FC, Fragment } from "react";
+import { Box, CardMedia, Container, Link, Typography } from "@mui/material";
 
 export const WellTailored: FC = () => {
   return (

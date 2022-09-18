@@ -1,8 +1,9 @@
-import { Wallet } from "@mui/icons-material";
+import { FC, Fragment } from "react";
 import { useMediaQuery } from "@hooks";
+import { Wallet } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { ConnectButton as RainbowButton } from "@rainbow-me/rainbowkit";
-import { FC, Fragment } from "react";
+import Image from "next/image";
 
 export const ConnectButton: FC<ConnectButtonProps> = (
   props: ConnectButtonProps
@@ -89,7 +90,7 @@ export const ConnectButton: FC<ConnectButtonProps> = (
                           }}
                         >
                           {chain.iconUrl && (
-                            <img
+                            <Image
                               alt={chain.name ?? "Chain icon"}
                               src={chain.iconUrl}
                               style={{ width: 24, height: 24 }}

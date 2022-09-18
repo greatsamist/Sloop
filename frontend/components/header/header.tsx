@@ -1,7 +1,8 @@
 import { FC, Fragment, useCallback, useEffect, useMemo, useState } from "react";
-import { Typography } from "@mui/material";
 import { ConnectButton, NavItem } from "@components";
+import { Typography } from "@mui/material";
 import Image from "next/image";
+
 import { StyledHeader, StyledNavContainer } from "./header.styles";
 
 export const Header: FC<HeaderProps> = (props: HeaderProps) => {
