@@ -1,6 +1,6 @@
-import { FC, Fragment, HTMLAttributeAnchorTarget, ReactNode } from "react";
-import { default as NextLink } from "next/link";
 import { StyledLink } from "./nav-item.styles";
+import { default as NextLink } from "next/link";
+import { FC, Fragment, HTMLAttributeAnchorTarget, ReactNode } from "react";
 
 export const NavItem: FC<NavItemProps> = (props: NavItemProps) => {
   const { href, target, children } = props;
