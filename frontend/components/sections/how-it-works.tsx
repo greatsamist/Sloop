@@ -18,7 +18,7 @@ export const HowItWorksSection: FC = () => {
         <Box
           display="flex"
           justifyContent="space-between"
-          sx={{ marginTop: "3rem", padding: "0 7rem" }}
+          sx={{ marginTop: "3rem", padding: "0 8rem" }}
         >
           <Container>
             <CardMedia

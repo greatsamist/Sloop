@@ -1,4 +1,4 @@
-import { styled } from "@mui/material";
+import { styled } from "@mui/material/styles";
 
 export const StyledTitle = styled("h1")({
   textAlign: "center",
@@ -23,7 +23,6 @@ export const StyledTitle = styled("h1")({
 });
 
 export const StyledTitleSpan = styled("span")({
-  position: "absolute",
   color: "#fff",
   fontSize: "10px",
 });
@@ -34,7 +33,7 @@ export const StyledRedTitle = styled(StyledTitle)({
 
 export const StyledSubTitle = styled("p")({
   textAlign: "center",
-  display: "inline-flex",
+  // display: "inline-flex",
   fontWeight: "400",
   color: "#E5E5E5",
   fontFamily: "Source Sans Pro",
