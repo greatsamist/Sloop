@@ -1,26 +1,27 @@
 import { styled } from "@mui/material/styles";
 
-export const StyledTitle = styled("h1")({
+export const StyledTitle = styled("h1")(({ theme }) => ({
   textAlign: "center",
   textTransform: "uppercase",
   margin: "0",
   letterSpacing: "4px",
   lineHeight: "33px",
   fontFamily: "Inter",
-  fontSize: "40px",
+  fontSize: "3rem",
   fontWeight: "700",
+  padding: "0 2rem",
   color: "#fff",
-  marginTop: "30px",
+  marginTop: "2rem",
   // Apply breakpoints here
-  lh: "1.2",
-  fs: "2.5rem",
-  "@sm": {
-    fs: "3rem",
+  [theme.breakpoints.down("lg")]: {
+    fontSize: "2rem",
+    marginTop: "1.5rem",
   },
-  "@lg": {
-    fs: "3.5rem",
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1.5rem",
+    marginTop: "0.2rem",
   },
-});
+}));
 
 export const StyledTitleSpan = styled("span")({
   color: "#fff",
@@ -31,16 +32,25 @@ export const StyledRedTitle = styled(StyledTitle)({
   color: "#F30917",
 });
 
-export const StyledSubTitle = styled("p")({
+export const StyledSubTitle = styled("p")(({ theme }) => ({
   textAlign: "center",
   // display: "inline-flex",
   fontWeight: "400",
   color: "#E5E5E5",
   fontFamily: "Source Sans Pro",
-  fontSize: "22px",
-  width: "50%",
-  marginTop: "40px",
-});
+  fontSize: "1.6rem",
+  width: "60%",
+  marginTop: "3rem",
+
+  [theme.breakpoints.down("lg")]: {
+    fontSize: "1.4rem",
+    marginTop: "2.5rem",
+  },
+  [theme.breakpoints.down("md")]: {
+    fontSize: "1.2rem",
+    marginTop: "2rem",
+  },
+}));
 
 export const StyledGradientBackground = styled("div")({
   top: 0,
