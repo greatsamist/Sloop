@@ -1,31 +1,54 @@
-import { FC } from "react";
-import styles from "./index-hero.module.scss";
-import Link from "next/link";
+import { FC, Fragment } from "react";
+import { Wallet } from "@mui/icons-material";
+import { Box, Button } from "@mui/material";
+
+import {
+  StyledRedTitle,
+  StyledSubTitle,
+  StyledTitle,
+  StyledTitleSpan,
+} from "./hero.styles";
 
 export const IndexHero: FC = () => {
   return (
-    <div className={styles.container}>
-      <div className={styles.inner}>
-        <div className={styles.innerLeft}>
-          <h2 className={styles.heading}>
-            Be in <span>control</span> of all your activities and events
-          </h2>
-          <p className={styles.heading__sub}>
-            Auto mint with PAOP integration for all attendee
-          </p>
-          <div className={styles.button}>
-            <Link href="./create">
-              <button className={styles.button__btn}>Create Event</button>
-            </Link>
-            <Link href="./events">
-              <button className={styles.button__btnNbg}>Buy Ticket</button>
-            </Link>
-          </div>
-        </div>
-        <div className={styles.innerRight}>
-          <img className={styles.image} src="./DRIP_12.png" alt="home image" />
-        </div>
-      </div>
-    </div>
+    <Fragment>
+      <Box
+        display="flex"
+        flexDirection="column"
+        justifyContent="center"
+        sx={{
+          margin: "0 auto",
+          height: "100vh",
+          minHeight: "100vh",
+          alignItems: "center",
+          paddingBottom: "2rem",
+        }}
+      >
+        <StyledTitle sx={{ marginBottom: "0" }}>
+          Supply Chain management at your
+        </StyledTitle>
+        <StyledRedTitle>
+          finger<StyledTitleSpan>Tip</StyledTitleSpan>
+        </StyledRedTitle>
+
+        <StyledSubTitle>
+          Your all in one place to track supplies distribution and day to day
+          activities, Straps allows you have a transparent, qualitative and
+          quantitative assessment of your overall processes
+        </StyledSubTitle>
+
+        <Button
+          variant="outlined"
+          endIcon={<Wallet />}
+          sx={{
+            textAlign: "center",
+            alignItems: "center",
+            margin: "50px 0",
+          }}
+        >
+          Login With UD
+        </Button>
+      </Box>
+    </Fragment>
   );
 };

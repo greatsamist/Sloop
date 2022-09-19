@@ -1,16 +1,16 @@
 import { FC, Fragment } from "react";
 import { useMediaQuery } from "@hooks";
+import { Wallet } from "@mui/icons-material";
+import { Button } from "@mui/material";
 import { ConnectButton as RainbowButton } from "@rainbow-me/rainbowkit";
-import { Wallet } from "react-iconly";
-// import btn from "../../styles/button.module.scss";
-import styles from "./connect-button.module.scss";
+import Image from "next/image";
 
 export const ConnectButton: FC<ConnectButtonProps> = (
   props: ConnectButtonProps
 ) => {
   const {} = props;
 
-  const isMobile = useMediaQuery(800);
+  const isMobile = useMediaQuery(900);
 
   return (
     <Fragment>
@@ -37,79 +37,87 @@ export const ConnectButton: FC<ConnectButtonProps> = (
               {(() => {
                 if (!mounted || !account || !chain) {
                   return (
-                    <button
-                      className={styles.btn}
+                    <Button
+                      variant="outlined"
+                      endIcon={<Wallet />}
+                      sx={{
+                        textAlign: "center",
+                        alignItems: "center",
+                      }}
                       onClick={openConnectModal}
-                      type="button"
                     >
-                      <Wallet
-                        style={{ verticalAlign: "middle", marginRight: "8px" }}
-                        set="curved"
-                        primaryColor="currentColor"
-                      />
-                      <span> Connect Wallet</span>
-                    </button>
+                      Connect Wallet
+                    </Button>
                   );
                 }
 
                 if (chain.unsupported) {
                   return (
-                    <button
-                      className={styles.btn}
+                    <Button
+                      variant="outlined"
+                      endIcon={<Wallet />}
+                      sx={{
+                        textAlign: "center",
+                        alignItems: "center",
+                      }}
                       onClick={openChainModal}
-                      type="button"
                     >
                       Wrong network
-                    </button>
+                    </Button>
                   );
                 }
 
                 return (
                   <div style={{ display: "flex", gap: 12 }}>
-                    <button
-                      className={styles.btn}
-                      onClick={openChainModal}
-                      style={{ display: "flex", alignItems: "center" }}
-                      type="button"
-                    >
-                      {!isMobile && chain.hasIcon && (
-                        <div
-                          style={{
-                            background: chain.iconBackground,
-                            width: 24,
-                            height: 24,
-                            borderRadius: 999,
-                            overflow: "hidden",
-                            marginRight: 4,
-                          }}
-                        >
-                          {chain.iconUrl && (
-                            <img
-                              alt={chain.name ?? "Chain icon"}
-                              src={chain.iconUrl}
-                              style={{ width: 24, height: 24 }}
-                            />
-                          )}
-                        </div>
-                      )}
-                      {chain.name}
-                    </button>
+                    {isMobile ? null : (
+                      <Button
+                        variant="outlined"
+                        endIcon={<Wallet />}
+                        sx={{
+                          textAlign: "center",
+                          alignItems: "center",
+                        }}
+                        onClick={openChainModal}
+                      >
+                        {!isMobile && chain.hasIcon && (
+                          <div
+                            style={{
+                              background: chain.iconBackground,
+                              width: 24,
+                              height: 24,
+                              borderRadius: 999,
+                              overflow: "hidden",
+                              marginRight: 4,
+                            }}
+                          >
+                            {chain.iconUrl && (
+                              <Image
+                                width={24}
+                                height={24}
+                                alt={chain.name ?? "Chain icon"}
+                                src={chain.iconUrl}
+                              />
+                            )}
+                          </div>
+                        )}
+                        {chain.name}
+                      </Button>
+                    )}
 
-                    <button
-                      className={styles.btn}
+                    <Button
+                      variant="outlined"
+                      endIcon={<Wallet />}
+                      sx={{
+                        textAlign: "center",
+                        alignItems: "center",
+                      }}
                       onClick={openAccountModal}
-                      type="button"
                     >
-                      <Wallet
-                        style={{ verticalAlign: "middle", marginRight: "8px" }}
-                        set="curved"
-                        primaryColor="currentColor"
-                      />
                       {account.displayName}
                       {/* {account.displayBalance
                         ? ` (${account.displayBalance})`
                         : ""} */}
-                    </button>
+                    </Button>
                   </div>
                 );
               })()}

@@ -1,2 +1,2 @@
-export * from "./bloc-contract";
-export const blocContractABI = require("./abi/bloc-event.json");
+export * from "./straps-contract";
+export const StrapsContractABI = require("./abi/straps.json");
