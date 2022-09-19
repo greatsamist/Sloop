@@ -48,7 +48,13 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
 
             <Typography
               variant="h5"
-              sx={{ display: { xs: "none", sm: "block", marginLeft: "1rem" } }}
+              sx={{
+                display: {
+                  xs: "none",
+                  md: "block",
+                },
+                marginLeft: "1rem",
+              }}
             >
               Straps
             </Typography>

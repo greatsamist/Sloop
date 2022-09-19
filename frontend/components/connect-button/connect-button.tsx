@@ -10,7 +10,7 @@ export const ConnectButton: FC<ConnectButtonProps> = (
 ) => {
   const {} = props;
 
-  const isMobile = useMediaQuery(800);
+  const isMobile = useMediaQuery(900);
 
   return (
     <Fragment>
@@ -69,37 +69,40 @@ export const ConnectButton: FC<ConnectButtonProps> = (
 
                 return (
                   <div style={{ display: "flex", gap: 12 }}>
-                    <Button
-                      variant="outlined"
-                      endIcon={<Wallet />}
-                      sx={{
-                        textAlign: "center",
-                        alignItems: "center",
-                      }}
-                      onClick={openChainModal}
-                    >
-                      {!isMobile && chain.hasIcon && (
-                        <div
-                          style={{
-                            background: chain.iconBackground,
-                            width: 24,
-                            height: 24,
-                            borderRadius: 999,
-                            overflow: "hidden",
-                            marginRight: 4,
-                          }}
-                        >
-                          {chain.iconUrl && (
-                            <Image
-                              alt={chain.name ?? "Chain icon"}
-                              src={chain.iconUrl}
-                              style={{ width: 24, height: 24 }}
-                            />
-                          )}
-                        </div>
-                      )}
-                      {chain.name}
-                    </Button>
+                    {isMobile ? null : (
+                      <Button
+                        variant="outlined"
+                        endIcon={<Wallet />}
+                        sx={{
+                          textAlign: "center",
+                          alignItems: "center",
+                        }}
+                        onClick={openChainModal}
+                      >
+                        {!isMobile && chain.hasIcon && (
+                          <div
+                            style={{
+                              background: chain.iconBackground,
+                              width: 24,
+                              height: 24,
+                              borderRadius: 999,
+                              overflow: "hidden",
+                              marginRight: 4,
+                            }}
+                          >
+                            {chain.iconUrl && (
+                              <Image
+                                width={24}
+                                height={24}
+                                alt={chain.name ?? "Chain icon"}
+                                src={chain.iconUrl}
+                              />
+                            )}
+                          </div>
+                        )}
+                        {chain.name}
+                      </Button>
+                    )}
 
                     <Button
                       variant="outlined"

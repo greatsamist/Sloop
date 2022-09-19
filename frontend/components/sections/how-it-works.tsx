@@ -2,6 +2,8 @@ import { FC, Fragment } from "react";
 import { Wallet } from "@mui/icons-material";
 import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
 
+import { WellBox } from "./section.styles";
+
 export const HowItWorksSection: FC = () => {
   return (
     <Fragment>
@@ -15,28 +17,26 @@ export const HowItWorksSection: FC = () => {
       >
         <Typography variant="h2">How It Works</Typography>
 
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          sx={{ marginTop: "3rem", padding: "0 8rem" }}
+        <Container
+          sx={{
+            display: {
+              xs: "none",
+              lg: "block",
+            },
+            marginTop: "3rem",
+            padding: "0 5rem",
+          }}
         >
-          <Container>
-            <CardMedia
-              height="100%"
-              width="80%"
-              component="img"
-              src="./assets/images/Howitworks.svg"
-              title="well tailored image"
-            />
-          </Container>
-        </Box>
+          <CardMedia
+            height="95px"
+            component="img"
+            src="./assets/images/Howitworks.svg"
+            title="How straps work image"
+            sx={{ objectFit: "contain" }}
+          />
+        </Container>
 
-        <Box
-          display="flex"
-          justifyContent="space-between"
-          gap="1rem"
-          sx={{ marginTop: "3rem" }}
-        >
+        <WellBox>
           <Container>
             <Typography variant="h6">
               DELIVERIES ARE SENT OUT TO DESIGNATED LOCATIONS AND RECORDED
@@ -55,7 +55,7 @@ export const HowItWorksSection: FC = () => {
               OPENED ACCORDINGLY
             </Typography>
           </Container>
-        </Box>
+        </WellBox>
 
         <Button
           variant="outlined"

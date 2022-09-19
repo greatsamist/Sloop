@@ -29,7 +29,14 @@ export const Accountability: FC = () => {
           </Link>
         </Container>
 
-        <Container>
+        <Container
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+          }}
+        >
           <CardMedia
             height="500"
             component="img"

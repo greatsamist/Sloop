@@ -11,7 +11,14 @@ export const WellTailored: FC = () => {
         gap="5rem"
         sx={{ padding: "12rem 2rem 4rem", width: "90%", margin: "0 auto" }}
       >
-        <Container>
+        <Container
+          sx={{
+            display: {
+              xs: "none",
+              md: "block",
+            },
+          }}
+        >
           <CardMedia
             height="100%"
             component="img"
