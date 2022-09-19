@@ -12,42 +12,42 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 // Go to https://hardhat.org/config/ to learn more
 
 module.exports = {
-  solidity: "0.8.15",
-  networks: {
-    goerli: {
-      url: GOERLI_API_KEY_URL,
-      accounts: [PRIVATE_KEY],
-    },
-    mumbai: {
-      url: MUMBAI_API_KEY_URL,
-      accounts: [PRIVATE_KEY],
-    },
-  },
+  solidity: "0.8.7",
+  // networks: {
+  //   goerli: {
+  //     url: GOERLI_API_KEY_URL,
+  //     accounts: [PRIVATE_KEY],
+  //   },
+  //   mumbai: {
+  //     url: MUMBAI_API_KEY_URL,
+  //     accounts: [PRIVATE_KEY],
+  //   },
+  // },
   settings: {
     optimizer: {
       enabled: true,
       runs: 200,
     },
   },
-  gasReporter: {
-    enabled: process.env.REPORT_GAS !== undefined,
-    currency: "USD",
-  },
-  etherscan: {
-    apiKey: {
-      goerli: process.env.ETHERSCAN_KEY || "",
-    },
-    customChains: [
-      {
-        network: "goerli",
-        chainId: 5,
-        urls: {
-          apiURL: "https://api-goerli.etherscan.io/api",
-          browserURL: "https://goerli.etherscan.io",
-        },
-      },
-    ],
-  },
+  // gasReporter: {
+  //   enabled: process.env.REPORT_GAS !== undefined,
+  //   currency: "USD",
+  // },
+  // etherscan: {
+  //   apiKey: {
+  //     goerli: process.env.ETHERSCAN_KEY || "",
+  //   },
+  //   customChains: [
+  //     {
+  //       network: "goerli",
+  //       chainId: 5,
+  //       urls: {
+  //         apiURL: "https://api-goerli.etherscan.io/api",
+  //         browserURL: "https://goerli.etherscan.io",
+  //       },
+  //     },
+  //   ],
+  // },
   // etherscan: {
   //   apiKey: {
   //     polygonMumbai: process.env.POLYGONSCAN_KEY || "",
