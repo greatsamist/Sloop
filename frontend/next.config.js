@@ -7,7 +7,10 @@
 // This source was taken from the @next/mdx plugin source:
 // https://github.com/vercel/next.js/tree/canary/packages/next-mdx
 module.exports = {
-  webpack: (config) => {
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback.fs = false;
+    }
     config.module.rules.push({
       test: /\.svg$/,
       use: ["@svgr/webpack"],

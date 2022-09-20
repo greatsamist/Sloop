@@ -38,7 +38,7 @@ export const Accountability: FC = () => {
           }}
         >
           <CardMedia
-            height="500"
+            height="100%"
             component="img"
             src="./assets/images/Accountability.svg"
             title="well tailored image"

@@ -6,7 +6,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js"
   },
-  "repository": "https://github.com/greatsamist/BlocEvent.git",
+  "repository": "https://github.com/greatsamist/straps.git",
   "author": "Eric-Vondee",
   "license": "MIT",
   "dependencies": {

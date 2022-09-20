@@ -28,6 +28,8 @@
       "@hooks": ["hooks"],
       "@lib": ["lib"],
       "@lib/*": ["lib/*"],
+      "@utils": ["utils"],
+      "@utils/*": ["utils/*"],
       "@styles": ["styles"],
       "@styles/*": ["styles/*"]
     }

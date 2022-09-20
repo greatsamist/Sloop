@@ -3,5 +3,7 @@ export * from "./footer";
 export * from "./header";
 export * from "./heros";
 export * from "./nav-item";
+export * from "./modal";
 export * from "./provider";
 export * from "./sections";
+export * from "./utils";
