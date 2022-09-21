@@ -21,7 +21,7 @@ const needsInjectedWalletFallback = Boolean(
 );
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai],
+  [chain.polygonMumbai, chain.mainnet],
   [
     // jsonRpcProvider({
     //   rpc: () => ({ http: 'process.env.MUMBAI_API_KEY_URL' })
