@@ -9,7 +9,7 @@ import "./IStraps.sol";
 contract StrapsFactory is Ownable {
     address public implementation;
     address[] public allStraps;
-    IStraps theStrap;
+    
 
     mapping(bytes32 => address) private idToAddress;
 
@@ -35,7 +35,7 @@ contract StrapsFactory is Ownable {
         require(idToAddress[id] == address(0), "Straps type exist");
         bytes32 salt = keccak256(abi.encodePacked(_name, _deployer));
         strapsContract = Clones.cloneDeterministic(implementation, salt);
-        theStrap = IStraps(strapsContract);
+        IStraps(strapsContract).initalize(_deployer);
         allStraps.push(strapsContract);
         idToAddress[id] = strapsContract;
 

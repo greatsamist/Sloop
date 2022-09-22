@@ -7,7 +7,9 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract Starps is Initializable, AccessControl {
     address deployer;
-    bytes32 constant MODERATOR_ROLE = keccak256("MANAGER_ROLE");
+    bytes32 constant MODERATOR_ROLE = keccak256("MODERATOR_ROLE");
+    bytes32 constant ADMIN_ROLE = keccak256("DEFAULT_ADMIN_ROLE");
+
     // Product
     struct Product {
         uint8 id;
@@ -45,6 +47,7 @@ contract Starps is Initializable, AccessControl {
 
    function initialize(address _deployer) public initializer {
     deployer = _deployer;
+    _grantRole(ADMIN_ROLE, _deployer);
    }
 
     /// @notice Add a single product
@@ -139,7 +142,7 @@ contract Starps is Initializable, AccessControl {
           // Increases the products in destination department end
         Department storage destDept = departments[receivingDept];
         for(uint i = 0; i < _productsId.length; i++) {
-            srcDept.numOfProductsInStock += 1;
+            srcDept.numOfProductsInStock -= 1;
             destDept.numOfProductsInStock += 1;
         }
     }
@@ -147,7 +150,7 @@ contract Starps is Initializable, AccessControl {
      /// @notice Claim moved product at the destination end and update Order information.
     /// @dev Algorithm to check who is claiming and afterwards update the products destination
     /// @param _moderator The new moderator address to move the products
-    function addModerators(address _moderator) external {
+    function addModerators(address _moderator) external onlyRole(ADMIN_ROLE) {
         _grantRole(MODERATOR_ROLE, _moderator);
     }
 
