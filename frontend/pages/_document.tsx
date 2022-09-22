@@ -13,7 +13,7 @@ export default class MyDocument extends Document {
             name="theme-color"
             content={defaultTheme.palette.primary.main}
           />
-          <link rel="shortcut icon" href="/favicon.ico" />
+          <link rel="icon" href="/assets/images/favicon.ico" />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link
             rel="preconnect"
@@ -21,13 +21,13 @@ export default class MyDocument extends Document {
             crossOrigin="anonymous"
           />
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Poppins:wght@300;400;500&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap"
             rel="stylesheet"
           ></link>
           <link
+            href="https://fonvts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=Poppins:wght@300;400;500&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400&display=swap"
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-          />
+          ></link>
           <meta name="emotion-insertion-point" content="" />
           {(this.props as any).emotionStyleTags}
         </Head>

@@ -11,4 +11,6 @@ export const StyledHeader = styled(AppBar)({
 export const StyledNavContainer = styled(Toolbar)({
   display: "flex",
   justifyContent: "space-between",
+  alignItems: "center",
+  alignContent: "center",
 });

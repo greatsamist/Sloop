@@ -24,6 +24,7 @@ export const StyledTitle = styled("h1")(({ theme }) => ({
 }));
 
 export const StyledTitleSpan = styled("span")({
+  position: "absolute",
   color: "#fff",
   fontSize: "10px",
 });

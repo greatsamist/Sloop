@@ -1,7 +1,10 @@
 import { FC, Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { ConnectButton, NavItem } from "@components";
-import { Typography } from "@mui/material";
+import { ChatModal } from "@components/modal";
+import { Notifications } from "@mui/icons-material";
+import { Badge, Icon, Typography } from "@mui/material";
 import Image from "next/image";
+import Link from "next/link";
 
 import { StyledHeader, StyledNavContainer } from "./header.styles";
 
@@ -46,18 +49,21 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
               style={{ objectFit: "cover" }}
             />
 
-            <Typography
-              variant="h5"
-              sx={{
-                display: {
-                  xs: "none",
-                  md: "block",
-                },
-                marginLeft: "1rem",
-              }}
-            >
-              Straps
-            </Typography>
+            <Link href="/">
+              <Typography
+                variant="h5"
+                sx={{
+                  display: {
+                    xs: "none",
+                    md: "block",
+                  },
+                  marginLeft: "1rem",
+                  cursor: "pointer",
+                }}
+              >
+                Straps
+              </Typography>
+            </Link>
           </StyledNavContainer>
 
           <StyledNavContainer>
@@ -69,6 +75,22 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
             </NavItem>
 
             <NavItem href="#">Road Map</NavItem>
+
+            <Icon
+              sx={{
+                mr: "1.5rem",
+                p: " 1.5rem 3.2rem 1.5rem 0",
+                display: "flex",
+                justifyContent: "space-between",
+                gap: "0.5rem",
+              }}
+            >
+              <ChatModal />
+
+              <Badge color="secondary" badgeContent={3} showZero>
+                <Notifications />
+              </Badge>
+            </Icon>
             <ConnectButton />
           </StyledNavContainer>
         </StyledNavContainer>
