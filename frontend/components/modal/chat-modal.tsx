@@ -4,10 +4,8 @@ import {
   Fragment,
   KeyboardEvent,
   useEffect,
-  useRef,
   useState,
 } from "react";
-import { FixedSizeList, ListChildComponentProps } from "react-window";
 import { stringAvatar } from "@components/utils";
 import { Chat, Send } from "@mui/icons-material";
 import {
@@ -30,64 +28,14 @@ import {
   Typography,
 } from "@mui/material";
 import { Client } from "@xmtp/xmtp-js";
-import { useNetwork, useSigner, useSwitchNetwork } from "wagmi";
+import { useSigner } from "wagmi";
 
 import { chatStyle } from "./modal.styles";
 
-function renderRow(props: ListChildComponentProps) {
-  const { index, style } = props;
-
-  return (
-    <ListItem style={style} key={index} component="div" disablePadding>
-      <ListItemButton>
-        <ListItemText primary={`Item ${index + 1}`} />
-      </ListItemButton>
-    </ListItem>
-  );
-}
-
-export const ChatModal: FC<ListChildComponentProps> = (
-  props: ListChildComponentProps
-) => {
-  const scrollBottomRef = useRef<HTMLInputElement | null>(null);
-
+export const ChatModal: FC = () => {
   const [open, setOpen] = useState(false);
-  // set xmtp client
-  const [client, setClient] = useState<Client>();
-  // set load conversations
-  const [loadingConversations, setLoadingConversations] =
-    useState<boolean>(false);
-  // set receiver address
-  const [receiverAddress, setReceiverAddress] = useState<string>(
-    "0x14254ce9aB9B3aaD797aF7e55374fE97dC981e8C"
-  );
-  // set content
-  const [content, setContent] = useState<string>("Sample XMTP text");
-  // set peers
-  const [peers, setPeers] = useState<{ id: number; address: string }[]>([]);
-  // set conversations
-  const [conversations, setConversations] = useState<
-    { id: string; contentTopic: string | undefined; content: string }[]
-  >([]);
-
-  // set message
-  const [message, setMessage] = useState<string>("Hello xmtp");
 
   const handleOpen = () => {
-    if (!signer) {
-      alert("Please connect wallet");
-      return;
-    }
-    // if (chains[1].id !== chain?.id) {
-    //   switchNetwork?.(chains[1].id);
-    //   alert("switch network in wallet");
-    //   return;
-    // }
-    // if (isLoading && pendingChainId) {
-    //   alert("Switching");
-    //   return;
-    // }
-    xmtp();
     setOpen(true);
   };
   const handleClose = () => setOpen(false);
@@ -95,97 +43,108 @@ export const ChatModal: FC<ListChildComponentProps> = (
   ////////////////////////////////
   // xmtp config
   const { data: signer } = useSigner();
-  // Create new conversations
-  const xmtp = async () => {
+
+  const [xmtpMethod, setXmtpMethod] = useState<Client>();
+  const [conversationMethod, setConversationMethod] = useState<any>();
+  const [messagesList, setMessagesList] = useState<any>();
+  const [toAddress, setToAddress] = useState<string>("");
+  const [newMessage, setNewMessage] = useState("");
+
+  const connect = async () => {
+    // Create the client with your wallet. This will connect to the XMTP development network by default
     if (!signer) {
       alert("Please connect wallet");
       return;
     }
-    // if (client !== undefined) return client;
-    setClient(
-      await Client.create(signer, {
-        env: "dev",
-      })
-    );
-  };
-
-  // Start conversations
-  const sendMessage = async () => {
-    // if (!client) return;
-    const conversation = await client?.conversations.newConversation(
-      receiverAddress
-    );
-    await conversation?.send(message);
-    setMessage("");
-  };
-
-  // get peer address
-  useEffect(() => {
-    const getPeers = async () => {
-      if (!client) return;
-      let chats = [];
-      let conversations = await client.conversations.list();
-
-      for (let i = 0; i < conversations.length; i++) {
-        let messageStructure = {
-          id: i,
-          address: conversations[i].peerAddress,
-        };
-        chats.push(messageStructure);
-        setPeers(chats);
-      }
-    };
-    getPeers();
-  }, [client]);
-
-  ////////////////////////////////////////
-  /// Handle Address
-  const selectedPeer: string = "";
-  const handleAddressChange = async (event: ChangeEvent<HTMLInputElement>) => {
-    setReceiverAddress(event.target.value);
-  };
-
-  useEffect(() => {
-    const listConversations = async () => {
-      setLoadingConversations(true);
-      const xm = await Client.create(signer, {
-        env: "dev",
-      });
-      let conversation = await xm.conversations.newConversation(selectedPeer);
-      let getMessage = await conversation!.messages();
-
-      for (let i = 0; i < getMessage.length; i++) {
-        let messageStructure = {
-          id: getMessage[i].id,
-          contentTopic: getMessage[i].contentTopic,
-          content: getMessage[i].content,
-        };
-        setConversations([...conversations, messageStructure]);
-      }
-      if (scrollBottomRef.current) {
-        scrollBottomRef.current?.scrollIntoView({ behavior: "smooth" });
-      }
-    };
-    listConversations();
-    setLoadingConversations(false);
-  }, [conversations]);
-
-  ////////////////////////////////////
-  // scrolLWithUseRef
-  const scrolLWithUseRef = () => {
-    scrollBottomRef.current?.scrollIntoView({
-      block: "center",
-      behavior: "smooth",
+    const xmtp = await Client.create(signer, {
+      env: "dev",
     });
+    console.log(xmtp);
+    setXmtpMethod(xmtp);
   };
+
+  const chatWith = async () => {
+    if (!xmtpMethod) return connect();
+    const conversation = await xmtpMethod.conversations.newConversation(
+      toAddress
+    );
+    setConversationMethod(conversation);
+
+    const messages = await conversation?.messages();
+    console.log(messages);
+    setMessagesList(messages);
+
+    // Listen for new messages in the conversation
+    for await (const message of await conversation?.streamMessages()) {
+      console.log(`[${message.senderAddress}]: ${message.content}`);
+      setMessagesList([...messages, message]);
+    }
+  };
+
+  const sendMessage = async () => {
+    // Send a message
+    await conversationMethod?.send(newMessage);
+  };
+
+  // // get peer address
+  // // useEffect(() => {
+  // const getPeers = async () => {
+  //   if (!xmtpMethod) return xmtp();
+  //   let chats = [];
+  //   let conversations = await xmtpMethod.conversations.list();
+
+  //   for (let i = 0; i < conversations.length; i++) {
+  //     let messageStructure = {
+  //       id: i,
+  //       address: conversations[i].peerAddress,
+  //     };
+  //     chats.push(messageStructure);
+  //     setPeers(chats);
+  //     console.log(peers);
+  //   }
+  // };
+  // //   getPeers();
+  // // }, [xmtpMethod]);
+
+  // ////////////////////////////////////////
+  // /// Handle Address
+  // const selectedPeer: string = "";
+  // const handleAddressChange = async (event: ChangeEvent<HTMLInputElement>) => {
+  //   setReceiverAddress(event.target.value);
+  // };
+
+  // // useEffect(() => {
+  // const listConversations = async () => {
+  //   // setLoadingConversations(true);
+  //   if (!xmtpMethod) return xmtp();
+  //   let conversation = await xmtpMethod.conversations.newConversation(
+  //     receiverAddress
+  //   );
+  //   let getMessage = await conversation!.messages();
+
+  //   for (let i = 0; i < getMessage.length; i++) {
+  //     let messageStructure = {
+  //       id: getMessage[i].id,
+  //       contentTopic: getMessage[i].contentTopic,
+  //       content: getMessage[i].content,
+  //     };
+  //     setConversations([...conversations, messageStructure]);
+  //     console.log(conversations);
+  //   }
+  // };
+  // listConversations();
+  // setLoadingConversations(false);
+
+  // }, [conversations]);
+
   // const handleUserChange = (event) => {
   //   setUser(event.target.value);
   // };
 
   // Handle Message input
-  const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setMessage(event.target.value);
-  };
+  // const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
+  //   setMessage(event.target.value);
+  // };
 
   const handleEnterKey = (event: KeyboardEvent<HTMLImageElement>) => {
     if (event.key === "Enter") {
@@ -193,19 +152,31 @@ export const ChatModal: FC<ListChildComponentProps> = (
     }
   };
 
-  const listChatMessages = conversations.map((chatMessageDto, index) => (
+  const listChatMessages = messagesList?.map((chatMessageDto, index) => (
     <ListItem key={index}>
       {/* <ListItemButton> */}
       <ListItemText
         sx={{
           backgroundColor: "#D9D9D9",
-          width: "auto",
-          padding: "0.8rem",
+          padding: "0.5rem",
           border: "1px solid rgba(255, 162, 167, 0.2)",
           borderRadius: "5px",
           color: "#3E4347",
         }}
-        secondary={`${chatMessageDto.id}: ${chatMessageDto.content}`}
+        primary={
+          <Fragment>
+            <Typography variant="body2" color="text.secondary">
+              {`${chatMessageDto.senderAddress}`}
+            </Typography>
+          </Fragment>
+        }
+        secondary={
+          <Fragment>
+            <Typography variant="body1" color="text.secondary">
+              {`${chatMessageDto.content}`}
+            </Typography>
+          </Fragment>
+        }
       />
       {/* </ListItemButton> */}
     </ListItem>
@@ -247,7 +218,10 @@ export const ChatModal: FC<ListChildComponentProps> = (
               }}
             >
               <Typography variant="h2">MESSAGING</Typography>
-
+              {/* <button onClick={listConversations()}>getConvo</button>
+              <button onClick={getPeers()}>getPeers</button> */}
+              <button onClick={connect}>Connect</button>
+              <button onClick={chatWith}>chat</button>
               {/* <Avatar {...stringAvatar(peers[0].address)} /> */}
               {/* <Avatar {...stringAvatar("Jed Watson")} />
               <Avatar {...stringAvatar("Product Manager")} /> */}
@@ -256,8 +230,8 @@ export const ChatModal: FC<ListChildComponentProps> = (
             <Container
               sx={{
                 width: "70%",
-                height: "400px",
-                // p: "1.5rem",
+                height: "100%",
+                p: "1.5rem 0",
                 background: " #fff",
                 borderRadius: "0 10px 10px 0",
               }}
@@ -269,59 +243,39 @@ export const ChatModal: FC<ListChildComponentProps> = (
                       <TextField
                         color="secondary"
                         sx={{ input: { color: "blue" } }}
-                        onChange={handleAddressChange}
-                        value={receiverAddress}
+                        onChange={(e) => setToAddress(e.target.value)}
+                        value={toAddress}
                         label="input address here"
                         variant="outlined"
                       />
                     </FormControl>
                   </Grid>
-                  <Grid id="chat-window" xs={12} item>
-                    <button
-                      onClick={scrolLWithUseRef}
-                      style={{ background: "green", color: "white" }}
-                    >
-                      Scroll using useRef
-                    </button>
-                    {/* <FixedSizeList
-                      height="100%"
-                      width="100%"
-                      itemSize={46}
-                      itemCount={13}
-                      overscanCount={5}
-                    > */}
-                    {/* {renderRow} */}
-                    <List id="chat-window-messages">
-                      {listChatMessages}
-                      <ListItem ref={scrollBottomRef}></ListItem>
-                    </List>
-                  </Grid>
-                  {/* <Grid xs={2} item>
+
+                  {/* <Grid id="chat-window" xs={12} item> */}
+                  <Box
+                    sx={{
+                      width: "100%",
+                      height: 400,
+                      maxWidth: 360,
+                      bgcolor: "background.paper",
+                    }}
+                  >
+                    {/* <List id="chat-window-messages">{listChatMessages}</List> */}
+                    {/* </Grid> */}
+                  </Box>
+
+                  <Grid xs={11} item>
                     <FormControl fullWidth>
                       <TextField
-                        // onChange={handleUserChange}
-                        // value={user}
-                        label="Nickname"
+                        color="secondary"
+                        sx={{ input: { color: "#000" } }}
+                        onChange={(e) => setNewMessage(e.target.value)}
+                        onKeyDown={handleEnterKey}
+                        // value={message}
+                        label="Type your message..."
                         variant="outlined"
                       />
                     </FormControl>
-                  </Grid> */}
-                  <Grid xs={11} item>
-                    {!loadingConversations ? (
-                      <FormControl fullWidth>
-                        <TextField
-                          color="secondary"
-                          sx={{ input: { color: "#000" } }}
-                          onChange={handleMessageChange}
-                          onKeyDown={handleEnterKey}
-                          value={message}
-                          label="Type your message..."
-                          variant="outlined"
-                        />
-                      </FormControl>
-                    ) : (
-                      "Wait for convo to load"
-                    )}
                   </Grid>
                   <Grid xs={1} item>
                     <IconButton

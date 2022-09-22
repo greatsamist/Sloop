@@ -41,13 +41,7 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
       <StyledHeader elevation={detached}>
         <StyledNavContainer>
           <StyledNavContainer>
-            <Image
-              src="/logoSvg.svg"
-              height={40}
-              width={40}
-              alt="logo"
-              style={{ objectFit: "cover" }}
-            />
+            <Image src="/logoSvg.svg" height={40} width={40} alt="logo" />
 
             <Link href="/">
               <Typography
