@@ -8,7 +8,7 @@ import "./IStraps.sol";
 contract StrapsFactory is Ownable {
     address public implementation;
     address[] public allStraps;
-    IStraps theStrap;
+    
 
     mapping(bytes32 => address) private idToAddress;
 
