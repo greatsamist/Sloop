@@ -1,7 +1,6 @@
 //SPDX-License-Identifier: MIT
 pragma solidity 0.8.7;
 
-
 import "@openzeppelin/contracts/proxy/Clones.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "./IStraps.sol";
@@ -35,7 +34,7 @@ contract StrapsFactory is Ownable {
         require(idToAddress[id] == address(0), "Straps type exist");
         bytes32 salt = keccak256(abi.encodePacked(_name, _deployer));
         strapsContract = Clones.cloneDeterministic(implementation, salt);
-        theStrap = IStraps(strapsContract);
+        IStraps(strapsContract).initalize(_deployer);
         allStraps.push(strapsContract);
         idToAddress[id] = strapsContract;
 

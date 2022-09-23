@@ -1,6 +1,7 @@
 import { FC, Fragment } from "react";
 import { Wallet } from "@mui/icons-material";
 import { Box, Button, CardMedia, Container, Typography } from "@mui/material";
+import Link from "next/link";
 
 import { WellBox } from "./section.styles";
 
@@ -56,18 +57,19 @@ export const HowItWorksSection: FC = () => {
             </Typography>
           </Container>
         </WellBox>
-
-        <Button
-          variant="outlined"
-          endIcon={<Wallet />}
-          sx={{
-            textAlign: "center",
-            alignItems: "center",
-            marginTop: "3rem",
-          }}
-        >
-          CREATE FOR YOUR BUSINESS
-        </Button>
+        <Link href="/create">
+          <Button
+            variant="outlined"
+            endIcon={<Wallet />}
+            sx={{
+              textAlign: "center",
+              alignItems: "center",
+              marginTop: "3rem",
+            }}
+          >
+            CREATE FOR YOUR BUSINESS
+          </Button>
+        </Link>
       </Box>
     </Fragment>
   );

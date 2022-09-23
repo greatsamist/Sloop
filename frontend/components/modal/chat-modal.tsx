@@ -20,7 +20,6 @@ import {
   IconButton,
   List,
   ListItem,
-  ListItemButton,
   ListItemText,
   Modal,
   Stack,
@@ -152,8 +151,8 @@ export const ChatModal: FC = () => {
     }
   };
 
-  const listChatMessages = messagesList?.map((chatMessageDto, index) => (
-    <ListItem key={index}>
+  const listChatMessages = messagesList?.map((chatMessageDto) => (
+    <ListItem key={chatMessageDto.id}>
       {/* <ListItemButton> */}
       <ListItemText
         sx={{
@@ -181,14 +180,6 @@ export const ChatModal: FC = () => {
       {/* </ListItemButton> */}
     </ListItem>
   ));
-  // const { index } = props;
-  // const listChatMessages = () => {
-  //   <ListItem key={index} component="div" disablePadding>
-  //     <ListItemButton>
-  //       <ListItemText primary={`Item ${index + 1}`} />
-  //     </ListItemButton>
-  //   </ListItem>;
-  // };
 
   return (
     <Fragment>
