@@ -3,8 +3,12 @@ import { Facebook, Twitter, YouTube } from "@mui/icons-material";
 import { Box, Container, List, ListItemText, Typography } from "@mui/material";
 import Image from "next/image";
 
-import { StyledListItem } from "./footer.styles";
-import { StyledFooter } from "./footer.styles";
+import {
+  StyledFooter,
+  StyledFooterIcon,
+  StyledFooterIcons,
+  StyledListItem,
+} from "./footer.styles";
 
 export const Footer: FC<FooterProps> = (props: FooterProps) => {
   const {} = props;
@@ -20,37 +24,29 @@ export const Footer: FC<FooterProps> = (props: FooterProps) => {
               alignItems: "flex-start",
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                alignItems: "center",
+                gap: "2rem",
+              }}
+            >
               <Image
                 src="/logoSvg.svg"
                 height={30}
                 width={30}
                 alt="strap logo"
               />
-              <Box
-                sx={{
-                  p: ".1rem",
-                  border: "1px solid #fff",
-                }}
-              >
-                <Twitter />
-              </Box>
-              <Box
-                sx={{
-                  p: ".1rem",
-                  border: "1px solid #fff",
-                }}
-              >
-                <Facebook />
-              </Box>
-              <Box
-                sx={{
-                  p: ".1rem",
-                  border: "1px solid #fff",
-                }}
-              >
-                <YouTube />
-              </Box>
+              <StyledFooterIcons>
+                <Twitter sx={StyledFooterIcon} />
+              </StyledFooterIcons>
+              <StyledFooterIcons>
+                <Facebook sx={StyledFooterIcon} />
+              </StyledFooterIcons>
+              <StyledFooterIcons>
+                <YouTube sx={StyledFooterIcon} />
+              </StyledFooterIcons>
             </Box>
           </Box>
           <StyledFooter>

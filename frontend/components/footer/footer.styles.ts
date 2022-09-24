@@ -11,10 +11,19 @@ export const StyledListItem = styled(ListItem)({
   margin: "0",
   paddingLeft: "0",
   paddingRight: "0",
-  fontFamily: "PT Sans",
-  fontSize: "0.7rem",
   display: "flex",
   flexDirection: "column",
-  color: "#fff",
+  color: "#C4C4C4",
   alignItems: "flex-start",
 });
+
+export const StyledFooterIcons = styled(Box)({
+  p: ".1rem",
+  border: "1px solid #C4C4C4",
+  lineHeight: "0",
+});
+
+export const StyledFooterIcon = {
+  fontSize: "20px",
+  color: "#C4C4C4",
+};
