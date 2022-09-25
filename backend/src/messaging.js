@@ -2,28 +2,6 @@ const express = require('express');
 const router = express.Router();
 const { Client, Conversations } = require('@xmtp/xmtp-js');
 const { Wallet, ethers } = require('ethers');
-const { route } = require('./notification');
-
-
-router.post('/register', async (req, res, next) => {
-    try {
-        const wallet = new ethers.Wallet("");
-        await Client.create(wallet, {
-            env: 'dev'
-        });
-
-        res.status(200).json({
-            statusCode: 200,
-            message: 'Address registered',
-        })
-    }
-    catch (e) {
-        res.status(500).send({
-            statusCode: 500,
-            error: e.message
-        })
-    }
-})
 
 router.post('/', async (req, res, next) => {
     try {
@@ -112,33 +90,5 @@ router.get('/chats', async (req, res, next) => {
         })
     }
 })
-
-
-router.post('/2', async (req, res, next) => {
-    try {
-        const wallet = new ethers.Wallet("");
-        const xmtp = await Client.create(wallet);
-        const conversation = await xmtp.conversations.newConversation("");
-        await conversation.send("Stay jiggy")
-        res.status(200).json({
-            statusCode: 200,
-            data: "hello"
-        })
-    }
-    catch (e) {
-        console.log(e)
-        res.status(500).send({
-            statusCode: 500,
-            error: e.message
-        })
-    }
-})
-
-
-
-
-
-
-
 
 module.exports = router;
