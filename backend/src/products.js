@@ -8,6 +8,7 @@ const { ethers } = require('ethers')
 const { connect, resultsToObjects, SUPPORTED_CHAINS } = require('@tableland/sdk')
 const { ProductValidator } = require('./validator/index')
 const axios = require('axios');
+const{ Web3Storage, getFilesFromPath} = require('web3.storage')
 dotenv.config()
 
 const polygonTestnet = SUPPORTED_CHAINS['polygon-mumbai']
@@ -21,6 +22,36 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage })
+router.post('/', upload.none(), async (req, res, next) => {
+    try {
+        const uploadName = ["ImageGallery", req.file.originalname].join('|')
+        const web3Storage = new Web3Storage({ token: process.env.WEB3STORAGE_TOKEN })
+        console.log(`> 🤖 calculating content ID for ${req.file.originalname}`)
+
+        const fileee = await getFilesFromPath(path.join(__dirname, `${req.file.originalname}`))
+
+        const cid = await web3Storage.put(fileee, {
+            name: uploadName,
+            onRootCidReady: (localCid) => {
+                console.log(`> 🔑 locally calculated Content ID: ${localCid} `)
+                console.log('> 📡 sending files to web3.storage ')
+            }
+        })
+
+        const imageURI = `ipfs://${cid}/${req.file.originalname}`
+        await fs.unlinkSync(path.join(__dirname, `${req.file.originalname}`))
+        res.status(200).json({
+            cid,
+            imageURI
+        })
+    }
+    catch (e) {
+        res.status(500).json({
+            statusCode: 500,
+            error: e.message
+        })
+    }
+})
 
 
 router.post('/', upload.none(), async (req, res, next) => {
