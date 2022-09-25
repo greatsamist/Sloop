@@ -75,66 +75,6 @@ export const ChatModal: FC = () => {
     await conversationMethod?.send(newMessage);
   };
 
-  // // get peer address
-  // // useEffect(() => {
-  // const getPeers = async () => {
-  //   if (!xmtpMethod) return xmtp();
-  //   let chats = [];
-  //   let conversations = await xmtpMethod.conversations.list();
-
-  //   for (let i = 0; i < conversations.length; i++) {
-  //     let messageStructure = {
-  //       id: i,
-  //       address: conversations[i].peerAddress,
-  //     };
-  //     chats.push(messageStructure);
-  //     setPeers(chats);
-  //     console.log(peers);
-  //   }
-  // };
-  // //   getPeers();
-  // // }, [xmtpMethod]);
-
-  // ////////////////////////////////////////
-  // /// Handle Address
-  // const selectedPeer: string = "";
-  // const handleAddressChange = async (event: ChangeEvent<HTMLInputElement>) => {
-  //   setReceiverAddress(event.target.value);
-  // };
-
-  // // useEffect(() => {
-  // const listConversations = async () => {
-  //   // setLoadingConversations(true);
-  //   if (!xmtpMethod) return xmtp();
-  //   let conversation = await xmtpMethod.conversations.newConversation(
-  //     receiverAddress
-  //   );
-  //   let getMessage = await conversation!.messages();
-
-  //   for (let i = 0; i < getMessage.length; i++) {
-  //     let messageStructure = {
-  //       id: getMessage[i].id,
-  //       contentTopic: getMessage[i].contentTopic,
-  //       content: getMessage[i].content,
-  //     };
-  //     setConversations([...conversations, messageStructure]);
-  //     console.log(conversations);
-  //   }
-  // };
-  // listConversations();
-  // setLoadingConversations(false);
-
-  // }, [conversations]);
-
-  // const handleUserChange = (event) => {
-  //   setUser(event.target.value);
-  // };
-
-  // Handle Message input
-  // const handleMessageChange = (event: ChangeEvent<HTMLInputElement>) => {
-  //   setMessage(event.target.value);
-  // };
-
   const handleEnterKey = (event: KeyboardEvent<HTMLImageElement>) => {
     if (event.key === "Enter") {
       sendMessage();
