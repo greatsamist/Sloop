@@ -1,4 +1,5 @@
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, useMemo, useState } from "react";
+import type { TransactionReceipt } from "@ethersproject/providers";
 import { strapsFactoryABI, strapsFactoryAddress } from "@lib";
 import CheckIcon from "@mui/icons-material/Check";
 import { LoadingButton } from "@mui/lab";
@@ -14,8 +15,8 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import { useAccount, useContractWrite } from "wagmi";
-import { usePrepareContractWrite } from "wagmi";
+import { useRouter } from "next/router";
+import { useAccount, useContractWrite, useWaitForTransaction } from "wagmi";
 
 import {
   chatStyle,
@@ -24,30 +25,62 @@ import {
   styledTextField,
 } from "./form.styles";
 
-export const CreateForm: FC = () => {
+export const CreateForm: FC<CreateFormProps> = (props: CreateFormProps) => {
+  const { onError, onSuccess } = props;
+
   const { address } = useAccount();
   const [adminAddress, setAdminAddress] = useState<String | undefined>(address);
   const [companyName, setCompanyName] = useState<String>("");
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [errorReason, setErrorReason] = useState<string | undefined>(undefined);
   const [open, setOpen] = useState(false);
 
+  const router = useRouter();
+
   // usePrepareContractWrite
-  const { config } = usePrepareContractWrite({
+  const creation = useContractWrite({
     addressOrName: strapsFactoryAddress,
     contractInterface: strapsFactoryABI,
     functionName: "createStraps",
-    args: [],
+    onSettled: async (_, error) => {
+      if (error) {
+        const reason = (error as unknown as { reason: string }).reason;
+        const reasonString = reason.split(":")[1];
+        setErrorReason(reasonString);
+        await onError(error);
+      }
+    },
   });
 
-  const { data, isLoading, isSuccess, write } = useContractWrite(config);
+  const waitCreation = useWaitForTransaction({
+    wait: creation.data?.wait,
+    hash: creation.data?.hash,
+    onSuccess: async (data: TransactionReceipt) => {
+      await onSuccess(data);
+      console.log(data);
+    },
+  });
+
+  const isLoading = useMemo<boolean>(() => {
+    return Boolean(creation.isLoading || waitCreation.isLoading);
+  }, [creation.isLoading, waitCreation.isLoading]);
 
   const handleClose = () => setOpen(false);
-  function handleClick() {
+  const handleClick = async () => {
     setLoading(true);
     setOpen(true);
-    write();
-  }
+    try {
+      await creation.writeAsync({
+        args: [companyName, adminAddress],
+      });
+    } catch (error) {
+      return;
+    }
+    setSuccess(false);
+    router.push("/dashboard");
+  };
+
   return (
     <Fragment>
       <Container sx={{ m: "8rem auto" }}>
@@ -110,7 +143,7 @@ export const CreateForm: FC = () => {
                   borderRadius: "10px 0 0 10px",
                 }}
               >
-                {loading && (
+                {isLoading && (
                   <CircularProgress
                     size={68}
                     sx={{
@@ -122,7 +155,7 @@ export const CreateForm: FC = () => {
                     }}
                   />
                 )}
-                {success ? <CheckIcon /> : ""}
+                {success ? <CheckIcon /> : errorReason ? errorReason : ""}
               </Container>
             </Box>
           </Fade>
@@ -131,3 +164,8 @@ export const CreateForm: FC = () => {
     </Fragment>
   );
 };
+
+interface CreateFormProps {
+  onError: (error: Error) => Promise<void>;
+  onSuccess: (data: TransactionReceipt) => Promise<void>;
+}

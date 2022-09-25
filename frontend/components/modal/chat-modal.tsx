@@ -1,15 +1,6 @@
-import {
-  ChangeEvent,
-  FC,
-  Fragment,
-  KeyboardEvent,
-  useEffect,
-  useState,
-} from "react";
-import { stringAvatar } from "@components/utils";
+import { FC, Fragment, KeyboardEvent, useState } from "react";
 import { Chat, Send } from "@mui/icons-material";
 import {
-  Avatar,
   Backdrop,
   Badge,
   Box,
@@ -22,7 +13,6 @@ import {
   ListItem,
   ListItemText,
   Modal,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -151,6 +141,7 @@ export const ChatModal: FC = () => {
     }
   };
 
+  //@ts-ignore
   const listChatMessages = messagesList?.map((chatMessageDto) => (
     <ListItem key={chatMessageDto.id}>
       {/* <ListItemButton> */}
@@ -209,13 +200,9 @@ export const ChatModal: FC = () => {
               }}
             >
               <Typography variant="h2">MESSAGING</Typography>
-              {/* <button onClick={listConversations()}>getConvo</button>
-              <button onClick={getPeers()}>getPeers</button> */}
+
               <button onClick={connect}>Connect</button>
               <button onClick={chatWith}>chat</button>
-              {/* <Avatar {...stringAvatar(peers[0].address)} /> */}
-              {/* <Avatar {...stringAvatar("Jed Watson")} />
-              <Avatar {...stringAvatar("Product Manager")} /> */}
             </Container>
 
             <Container
@@ -246,13 +233,13 @@ export const ChatModal: FC = () => {
                   <Box
                     sx={{
                       width: "100%",
-                      height: 400,
-                      maxWidth: 360,
-                      bgcolor: "background.paper",
+                      height: 320,
+                      // bgcolor: "background.paper",
                     }}
                   >
-                    {/* <List id="chat-window-messages">{listChatMessages}</List> */}
-                    {/* </Grid> */}
+                    <Box position="fixed">
+                      <List id="chat-window-messages">{listChatMessages}</List>
+                    </Box>
                   </Box>
 
                   <Grid xs={11} item>
