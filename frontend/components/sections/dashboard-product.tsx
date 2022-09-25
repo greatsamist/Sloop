@@ -6,6 +6,9 @@ export const DashboardProduct: FC = () => {
     <Fragment>
       <Container sx={{ m: "4rem auto 2rem" }}>
         <Paper elevation={12} />
+        <Typography variant="h3" sx={{ mb: "2rem" }}>
+          Company Name
+        </Typography>
         <Box
           sx={{
             display: "flex",
