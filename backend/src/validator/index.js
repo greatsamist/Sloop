@@ -1,18 +1,11 @@
-import Joi from 'joi';
+const Joi = require('joi');
 
-export const EventValidator = (event) => {
+const ProductValidator = (product) => {
     const schema =Joi.object({
-        eventName: Joi.string().required().label('Event Date'),
-        eventType: Joi.string().required().label('Event Type'), 
-        category: Joi.string().required().label('Category'), 
-        eventDate: Joi.string().required().label('Event Date'),
-        startTime: Joi.string().required().label('Start Time'), 
-        endTime: Joi.string().required().label('End Time'),
-        description: Joi.string().required().label('Description'),
-        organizers: Joi.string().required().label('Organizers'),
-        participantsNumber: Joi.number().required().label('Participants'),
-        ticketPrice: Joi.number().required().label('Ticket price'),
-        address: Joi.string().optional().label('Address')
+        id: Joi.string().required().label('Id'),
+        destinationAddress: Joi.string().required().label('Destination Address'), 
+        sourceAddress: Joi.string().required().label('Source Address'), 
+        productType: Joi.string().required().label('Product Type')
     })
     const options = {
         errors: {
@@ -21,6 +14,10 @@ export const EventValidator = (event) => {
           }
         }
     };
-    return schema.validate(event, options)
+    return schema.validate(product, options)
 }
 
+
+module.exports = {
+  ProductValidator
+}
