@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
-import { Wallet } from "@mui/icons-material";
-import { Box, Button } from "@mui/material";
+import { UDButton } from "@components";
+import { Box } from "@mui/material";
 
 import {
   StyledRedTitle,
@@ -37,17 +37,7 @@ export const IndexHero: FC = () => {
           quantitative assessment of your overall processes
         </StyledSubTitle>
 
-        <Button
-          variant="outlined"
-          endIcon={<Wallet />}
-          sx={{
-            textAlign: "center",
-            alignItems: "center",
-            margin: "50px 0",
-          }}
-        >
-          Login With UD
-        </Button>
+        <UDButton />
       </Box>
     </Fragment>
   );

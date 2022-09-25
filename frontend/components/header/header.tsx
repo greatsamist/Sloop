@@ -64,10 +64,11 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
             <NavItem href="#" target="">
               Home
             </NavItem>
-            <NavItem href="#" target="">
-              FAQ
-            </NavItem>
-
+            <Link href="/create">
+              <NavItem href="#" target="">
+                CREATE
+              </NavItem>
+            </Link>
             <NavItem href="#">Road Map</NavItem>
 
             <Icon

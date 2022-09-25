@@ -4,13 +4,14 @@ import { Box, Container, Paper, Typography } from "@mui/material";
 export const DashboardProduct: FC = () => {
   return (
     <Fragment>
-      <Container>
+      <Container sx={{ m: "4rem auto 2rem" }}>
         <Paper elevation={12} />
         <Box
           sx={{
             display: "flex",
-            justifyContent: "space-between",
+            justifyContent: "center",
             flexWrap: "wrap",
+            gap: "2rem",
           }}
         >
           <Box
@@ -26,21 +27,21 @@ export const DashboardProduct: FC = () => {
           <Box
             sx={{
               padding: "2rem 4rem",
-              backgroundColor: "rgba(207, 109, 187, 0.5)",
+              backgroundColor: "rgba(248, 124, 34, 0.5)",
               borderRadius: "10px",
             }}
           >
-            <Typography>TOTAL STOCK COUNT</Typography>
+            <Typography>AVAILABLE STOCK</Typography>
             <Typography variant="h3">49,000</Typography>
           </Box>
           <Box
             sx={{
               padding: "2rem 4rem",
-              backgroundColor: "rgba(207, 109, 187, 0.5)",
+              backgroundColor: "rgba(255, 162, 167, 0.5)",
               borderRadius: "10px",
             }}
           >
-            <Typography>TOTAL STOCK COUNT</Typography>
+            <Typography>DISTRIBUTED STOCK</Typography>
             <Typography variant="h3">49,000</Typography>
           </Box>
         </Box>
