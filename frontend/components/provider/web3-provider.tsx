@@ -21,7 +21,7 @@ const needsInjectedWalletFallback = Boolean(
 );
 
 const { chains, provider } = configureChains(
-  [chain.polygonMumbai, chain.mainnet],
+  [chain.polygonMumbai],
   [
     // jsonRpcProvider({
     //   rpc: () => ({ http: 'process.env.MUMBAI_API_KEY_URL' })
@@ -48,7 +48,7 @@ const connectors = connectorsForWallets([
     groupName: "Others",
     wallets: [
       wallet.walletConnect({ chains }),
-      wallet.coinbase({ appName: "InsureFi", chains }),
+      wallet.coinbase({ appName: "Straps", chains }),
       ...(needsInjectedWalletFallback ? [wallet.injected({ chains })] : []),
     ],
   },
