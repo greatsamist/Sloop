@@ -13,16 +13,16 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 
 module.exports = {
   solidity: "0.8.7",
-  // networks: {
-  //   goerli: {
-  //     url: GOERLI_API_KEY_URL,
-  //     accounts: [PRIVATE_KEY],
-  //   },
-  //   mumbai: {
-  //     url: MUMBAI_API_KEY_URL,
-  //     accounts: [PRIVATE_KEY],
-  //   },
-  // },
+  networks: {
+    // goerli: {
+    //   url: GOERLI_API_KEY_URL,
+    //   accounts: [PRIVATE_KEY],
+    // },
+    mumbai: {
+      url: MUMBAI_API_KEY_URL,
+      accounts: [PRIVATE_KEY],
+    },
+  },
   settings: {
     optimizer: {
       enabled: true,
@@ -48,9 +48,7 @@ module.exports = {
   //     },
   //   ],
   // },
-  // etherscan: {
-  //   apiKey: {
-  //     polygonMumbai: process.env.POLYGONSCAN_KEY || "",
-  //   }
-  // }
+  etherscan: {
+    apiKey: process.env.POLYGONSCAN_KEY || "",
+  },
 };
