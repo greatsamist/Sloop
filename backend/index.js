@@ -30,7 +30,7 @@ app.use(compression());
 
 app.use("/straps", require('./src/notification'));
 app.use("/messaging", require('./src/messaging'))
-
+app.use("/products", require('./src/products'))
 //Catch 404 and forard to error handler
 app.use((req, res, next) => {
   next(createError(404));
