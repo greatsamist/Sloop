@@ -5,7 +5,7 @@ import "@openzeppelin/contracts/proxy/utils/Initializable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 
-contract Starps is Initializable, AccessControl {
+contract Straps is Initializable, AccessControl {
     address deployer;
     bytes32 constant MODERATOR_ROLE = keccak256("MODERATOR_ROLE");
     bytes32 constant ADMIN_ROLE = keccak256("DEFAULT_ADMIN_ROLE");
