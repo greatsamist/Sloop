@@ -5,20 +5,24 @@ Straps is a decentralized supply chain app which manages and keep track of your 
 # [Live Preview](https://straps.vercel.app)
 
 # Implementaion Contract Mumbai Address: 0x33Ec645B5C0a792CedaCD7A82ae43F2CA1282110
+
 https://mumbai.polygonscan.com/address/0x33Ec645B5C0a792CedaCD7A82ae43F2CA1282110#code
 
 # Straps Factory Mumbai Address: 0x441A31881356ecfEfb76e896B1e321Ad1e103306
+
 https://mumbai.polygonscan.com/address/0x441A31881356ecfEfb76e896B1e321Ad1e103306#code
 
-![Homepage](https://github.com/greatsamist/straps/blob/main/.docs/homepage.png)
+![Homepage](https://github.com/greatsamist/straps/blob/master/.docs/homepage.png)
 
 ### Features
 
 #### Create a strap
-![Create](https://github.com/greatsamist/straps/blob/main/.docs/create.png)
 
-#### XMTP - Chat with store managers 
-![Chat](https://github.com/greatsamist/straps/blob/main/.docs/chat.png)
+![Create](https://github.com/greatsamist/straps/blob/master/.docs/create.png)
+
+#### XMTP - Chat with store managers
+
+![Chat](https://github.com/greatsamist/straps/blob/master/.docs/chat.png)
 
 #### Mangage orders
 
