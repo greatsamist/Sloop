@@ -4,11 +4,15 @@ Straps is a decentralized supply chain app which manages and keep track of your 
 
 # [Live Preview](https://straps.vercel.app)
 
-# Implementaion Contract Mumbai Address: 0x33Ec645B5C0a792CedaCD7A82ae43F2CA1282110
+# Implementation Contract Mumbai Address:
+
+0x33Ec645B5C0a792CedaCD7A82ae43F2CA1282110
 
 https://mumbai.polygonscan.com/address/0x33Ec645B5C0a792CedaCD7A82ae43F2CA1282110#code
 
-# Straps Factory Mumbai Address: 0x441A31881356ecfEfb76e896B1e321Ad1e103306
+# Straps Factory Mumbai Address:
+
+0x441A31881356ecfEfb76e896B1e321Ad1e103306
 
 https://mumbai.polygonscan.com/address/0x441A31881356ecfEfb76e896B1e321Ad1e103306#code
 
