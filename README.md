@@ -16,19 +16,19 @@ https://mumbai.polygonscan.com/address/0x33Ec645B5C0a792CedaCD7A82ae43F2CA128211
 
 https://mumbai.polygonscan.com/address/0x441A31881356ecfEfb76e896B1e321Ad1e103306#code
 
-![Homepage](https://github.com/greatsamist/straps/blob/master/.docs/homepage.png)
+![Homepage](https://github.com/greatsamist/straps/blob/master/.docs/homepage.PNG)
 
 ### Features
 
 #### Create a strap
 
-![Create](https://github.com/greatsamist/straps/blob/master/.docs/create.png)
+![Create](https://github.com/greatsamist/straps/blob/master/.docs/create.PNG)
 
 #### XMTP - Chat with store managers
 
-![Chat](https://github.com/greatsamist/straps/blob/master/.docs/chat.png)
+![Chat](https://github.com/greatsamist/straps/blob/master/.docs/chat.PNG)
 
-#### Mangage orders
+#### Manage orders
 
 #### Receive notifications with ENS
 
