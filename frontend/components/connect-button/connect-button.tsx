@@ -105,11 +105,15 @@ export const ConnectButton: FC<ConnectButtonProps> = (
                     )}
 
                     <Button
-                      variant="outlined"
+                      variant="contained"
                       endIcon={<Wallet />}
                       sx={{
                         textAlign: "center",
                         alignItems: "center",
+                        backgroundColor: "#FFA1A7",
+                        "&:hover": {
+                          backgroundColor: "#141414",
+                        },
                       }}
                       onClick={openAccountModal}
                     >

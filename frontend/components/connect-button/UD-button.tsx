@@ -44,24 +44,38 @@ export const UDButton: FC = () => {
 
   return (
     <Fragment>
-      <Button
-        variant="outlined"
-        onClick={handleLogin}
-        endIcon={<Wallet />}
-        sx={{
-          textAlign: "center",
-          alignItems: "center",
-          margin: "50px 0",
-        }}
-      >
-        Login With UD
-      </Button>
       {user ? (
-        <Button onClick={handleLogout}>Logout UD</Button>
+        <Button
+          variant="contained"
+          endIcon={<Wallet />}
+          sx={{
+            textAlign: "center",
+            alignItems: "center",
+            margin: "50px 0",
+            backgroundColor: "#FFA1A7",
+            "&:hover": {
+              backgroundColor: "#141414",
+            },
+          }}
+          onClick={handleLogout}
+        >
+          Logout UD
+        </Button>
       ) : error ? (
-        "login error"
+        "Login Error retry"
       ) : (
-        ""
+        <Button
+          variant="outlined"
+          onClick={handleLogin}
+          endIcon={<Wallet />}
+          sx={{
+            textAlign: "center",
+            alignItems: "center",
+            margin: "50px 0",
+          }}
+        >
+          Login With UD
+        </Button>
       )}
     </Fragment>
   );

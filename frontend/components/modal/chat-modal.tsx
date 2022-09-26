@@ -4,7 +4,6 @@ import {
   Backdrop,
   Badge,
   Box,
-  Container,
   Fade,
   FormControl,
   Grid,
@@ -117,6 +116,7 @@ export const ChatModal: FC = () => {
       <Badge color="secondary" badgeContent={0} showZero>
         <Chat onClick={handleOpen} sx={{ cursor: "pointer" }} />
       </Badge>
+
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -130,7 +130,7 @@ export const ChatModal: FC = () => {
       >
         <Fade in={open}>
           <Box sx={chatStyle}>
-            <Container
+            <Box
               sx={{
                 width: "30%",
                 p: "1.5rem",
@@ -143,9 +143,9 @@ export const ChatModal: FC = () => {
 
               <button onClick={connect}>Connect</button>
               <button onClick={chatWith}>chat</button>
-            </Container>
+            </Box>
 
-            <Container
+            <Box
               sx={{
                 width: "70%",
                 height: "100%",
@@ -206,7 +206,7 @@ export const ChatModal: FC = () => {
                   </Grid>
                 </Grid>
               </Box>
-            </Container>
+            </Box>
           </Box>
         </Fade>
       </Modal>

@@ -60,7 +60,7 @@ export const chatStyle = {
   transform: "translate(-50%, -50%)",
   width: "600px",
   height: "500px",
-  bgcolor: "#fff",
+  bgcolor: "#e3aec0",
   borderRadius: "10px",
   boxShadow: 24,
   display: "flex",

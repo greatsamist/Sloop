@@ -2,14 +2,16 @@ import { FC, Fragment, useCallback, useEffect, useMemo, useState } from "react";
 import { ConnectButton, NavItem } from "@components";
 import { ChatModal } from "@components/modal";
 import { Notifications } from "@mui/icons-material";
-import { Badge, Icon, Typography } from "@mui/material";
+import { Badge, Box, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useAccount } from "wagmi";
 
 import { StyledHeader, StyledNavContainer } from "./header.styles";
 
 export const Header: FC<HeaderProps> = (props: HeaderProps) => {
   const {} = props;
+  const { isConnected } = useAccount();
 
   const [scrollPosition, setScrollPosition] = useState<number>(0);
 
@@ -61,31 +63,33 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
           </StyledNavContainer>
 
           <StyledNavContainer>
-            <NavItem href="#" target="">
+            <NavItem href="/" target="">
               Home
             </NavItem>
-            <Link href="/create">
-              <NavItem href="#" target="">
-                CREATE
-              </NavItem>
-            </Link>
+
+            <NavItem href="/create" target="">
+              CREATE
+            </NavItem>
+
             <NavItem href="#">Road Map</NavItem>
+            {isConnected ? (
+              <Box
+                sx={{
+                  mr: "2rem",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "0.5rem",
+                }}
+              >
+                <ChatModal />
 
-            <Icon
-              sx={{
-                mr: "1.5rem",
-                p: " 1.5rem 3.2rem 1.5rem 0",
-                display: "flex",
-                justifyContent: "space-between",
-                gap: "0.5rem",
-              }}
-            >
-              <ChatModal />
-
-              <Badge color="secondary" badgeContent={3} showZero>
-                <Notifications />
-              </Badge>
-            </Icon>
+                <Badge color="secondary" badgeContent={2} showZero>
+                  <Notifications />
+                </Badge>
+              </Box>
+            ) : (
+              ""
+            )}
             <ConnectButton />
           </StyledNavContainer>
         </StyledNavContainer>

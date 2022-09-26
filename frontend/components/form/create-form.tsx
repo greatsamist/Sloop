@@ -77,7 +77,9 @@ export const CreateForm: FC<CreateFormProps> = (props: CreateFormProps) => {
     } catch (error) {
       return;
     }
-    setSuccess(false);
+    // setLoading(false);
+
+    setSuccess(true);
     router.push("/dashboard");
   };
 
@@ -121,46 +123,49 @@ export const CreateForm: FC<CreateFormProps> = (props: CreateFormProps) => {
             CREATE
           </LoadingButton>
         </Box>
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          open={open}
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-          <Fade in={open}>
-            <Box sx={chatStyle}>
-              <Container
-                sx={{
-                  width: "30%",
-                  p: "1.5rem",
-                  background: " #e3aec0",
-                  height: "100%",
-                  borderRadius: "10px 0 0 10px",
-                }}
-              >
-                {isLoading && (
-                  <CircularProgress
-                    size={68}
-                    sx={{
-                      color: "#4CAF50",
-                      position: "absolute",
-                      top: -6,
-                      left: -6,
-                      zIndex: 1,
-                    }}
-                  />
-                )}
-                {success ? <CheckIcon /> : errorReason ? errorReason : ""}
-              </Container>
-            </Box>
-          </Fade>
-        </Modal>
       </Container>
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={handleClose}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={chatStyle}>
+            <Box
+              sx={{
+                p: "1.5rem",
+              }}
+            >
+              {isLoading ? (
+                <CircularProgress
+                  size={68}
+                  sx={{
+                    color: "#4CAF50",
+                    // position: "absolute",
+                    // top: -6,
+                    // left: -6,
+                    zIndex: 1,
+                  }}
+                />
+              ) : (
+                ""
+              )}
+              {success ? <CheckIcon /> : errorReason ? errorReason : ""}
+              {success ? (
+                <Typography>Straps Creation successful</Typography>
+              ) : (
+                ""
+              )}
+            </Box>
+          </Box>
+        </Fade>
+      </Modal>
     </Fragment>
   );
 };
