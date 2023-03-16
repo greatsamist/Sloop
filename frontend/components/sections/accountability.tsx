@@ -1,15 +1,15 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import { Box, CardMedia, Container, Link, Typography } from "@mui/material";
 
 export const Accountability: FC = () => {
   return (
-    <Fragment>
+    <Container>
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
         gap="5rem"
-        sx={{ padding: "4rem 2rem 12rem", width: "90%", margin: "0 auto" }}
+        sx={{ padding: "4rem 0rem 12rem" }}
       >
         <Container>
           <Typography variant="h2" sx={{ marginBottom: "1rem" }}>
@@ -46,6 +46,6 @@ export const Accountability: FC = () => {
           />
         </Container>
       </Box>
-    </Fragment>
+    </Container>
   );
 };

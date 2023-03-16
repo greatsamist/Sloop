@@ -29,7 +29,7 @@ export const HowItWorksSection: FC = () => {
           }}
         >
           <CardMedia
-            height="95px"
+            height="90px"
             component="img"
             src="./assets/images/Howitworks.svg"
             title="How straps work image"
@@ -37,26 +37,24 @@ export const HowItWorksSection: FC = () => {
           />
         </Container>
 
-        <WellBox>
-          <Container>
+        <Container>
+          <WellBox>
             <Typography variant="h6">
               DELIVERIES ARE SENT OUT TO DESIGNATED LOCATIONS AND RECORDED
               IMMUTABLY ON THE BLOCKCHAIN
             </Typography>
-          </Container>
-          <Container>
+
             <Typography variant="h6">
               UPON RECEIVING THE GOODS, THE RECEIVING PARTY CHECKS AND ATTEST TO
               THE INFORMATION PROVIDED
             </Typography>
-          </Container>
-          <Container>
+
             <Typography variant="h6">
               IN THE LIKELY EVENT THAT THERE ARE ANY DISCREPANCIES A DISPUTE IS
               OPENED ACCORDINGLY
             </Typography>
-          </Container>
-        </WellBox>
+          </WellBox>
+        </Container>
         <Link href="/create">
           <Button
             variant="outlined"

@@ -1,8 +1,8 @@
-import { FC, Fragment, useCallback, useEffect, useMemo, useState } from "react";
+import { FC, useCallback, useEffect, useMemo, useState } from "react";
 import { ConnectButton, NavItem } from "@components";
 import { ChatModal } from "@components/modal";
 import { Notifications } from "@mui/icons-material";
-import { Badge, Box, Typography } from "@mui/material";
+import { Badge, Box, Container, Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 import { useAccount } from "wagmi";
@@ -39,7 +39,7 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
   }, [scrollPosition]);
 
   return (
-    <Fragment>
+    <Container>
       <StyledHeader elevation={detached}>
         <StyledNavContainer>
           <StyledNavContainer>
@@ -94,7 +94,7 @@ export const Header: FC<HeaderProps> = (props: HeaderProps) => {
           </StyledNavContainer>
         </StyledNavContainer>
       </StyledHeader>
-    </Fragment>
+    </Container>
   );
 };
 

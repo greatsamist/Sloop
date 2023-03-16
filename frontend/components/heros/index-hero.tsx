@@ -1,6 +1,6 @@
 import { FC, Fragment } from "react";
 import { UDButton } from "@components";
-import { Box } from "@mui/material";
+import { Box, Container } from "@mui/material";
 
 import {
   StyledRedTitle,
@@ -11,7 +11,7 @@ import {
 
 export const IndexHero: FC = () => {
   return (
-    <Fragment>
+    <Container>
       <Box
         display="flex"
         flexDirection="column"
@@ -39,6 +39,6 @@ export const IndexHero: FC = () => {
 
         <UDButton />
       </Box>
-    </Fragment>
+    </Container>
   );
 };

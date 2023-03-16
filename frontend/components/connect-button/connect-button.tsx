@@ -10,7 +10,7 @@ export const ConnectButton: FC<ConnectButtonProps> = (
 ) => {
   const {} = props;
 
-  const isMobile = useMediaQuery(900);
+  const isMobile = useMediaQuery(1020);
 
   return (
     <Fragment>

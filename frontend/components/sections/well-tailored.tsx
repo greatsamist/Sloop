@@ -1,15 +1,15 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import { Box, CardMedia, Container, Link, Typography } from "@mui/material";
 
 export const WellTailored: FC = () => {
   return (
-    <Fragment>
+    <Container>
       <Box
         display="flex"
         alignItems="center"
         justifyContent="space-between"
         gap="5rem"
-        sx={{ padding: "12rem 2rem 4rem", width: "90%", margin: "0 auto" }}
+        sx={{ padding: "12rem 0rem 4rem" }}
       >
         <Container
           sx={{
@@ -45,6 +45,6 @@ export const WellTailored: FC = () => {
           </Link>
         </Container>
       </Box>
-    </Fragment>
+    </Container>
   );
 };
