@@ -1,9 +1,11 @@
-import { FC, Fragment } from "react";
+import { FC, Fragment, useEffect } from "react";
 import { useMediaQuery } from "@hooks";
 import { Wallet } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import { ConnectButton as RainbowButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
+import { useRouter } from "next/router";
+import { useAccount } from "wagmi";
 
 export const ConnectButton: FC<ConnectButtonProps> = (
   props: ConnectButtonProps
@@ -11,6 +13,17 @@ export const ConnectButton: FC<ConnectButtonProps> = (
   const {} = props;
 
   const isMobile = useMediaQuery(1020);
+
+  const { isConnected } = useAccount();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!isConnected) {
+      router.push("/");
+    } else {
+      router.push("/dashboard");
+    }
+  }, [isConnected, router]);
 
   return (
     <Fragment>

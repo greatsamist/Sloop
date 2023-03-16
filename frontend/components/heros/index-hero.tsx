@@ -1,4 +1,4 @@
-import { FC, Fragment } from "react";
+import { FC } from "react";
 import { UDButton } from "@components";
 import { Box, Container } from "@mui/material";
 
